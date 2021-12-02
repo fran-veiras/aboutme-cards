@@ -14,6 +14,13 @@ export const TextComponent = {
       cursor: 'pointer',
       fontWeight: '600',
     },
+    code: {
+      color: '#000',
+      fontSize: 'sm',
+      cursor: 'pointer',
+      fontWeight: '600',
+      fontFamily: 'Monaco',
+    },
   },
   defaultProps: {},
 };

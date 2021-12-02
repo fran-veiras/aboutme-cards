@@ -3,6 +3,7 @@ import { Image } from '@chakra-ui/image';
 import { Box, Container, Flex, Heading, Text } from '@chakra-ui/layout';
 import { useEffect, useState } from 'react';
 import { EditProfile } from '../../components/userComponents/editProfile';
+import { ThemeOne } from '../../components/userComponents/themes/ThemeOne';
 import { firestore } from '../../firebase/admin';
 import editar, { addInfo } from '../../firebase/client';
 import useUser from '../../hooks/useUser';
@@ -17,8 +18,9 @@ export default function PostPage(props) {
 
   console.log(data);
 
-  const surname = 'fran';
-  const about = 'nada';
+  const surname = 'Veiras';
+  const about =
+    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt turpis nisi, ut finibus ante sodales at. Sed porta enim et arcu dictum ultricies. Cras sed fermentum ex, eget commodo risus. Morbi turpis purus, sollicitudin in auctor id, malesuada non quam. ';
 
   const onChange = () => {
     editar(user.uid, surname, about);
@@ -51,25 +53,23 @@ export default function PostPage(props) {
           background="transparent"
         >
           <Flex
+            wordBreak="break-word"
             width="80vw"
-            height="60vh"
+            height="70vh"
             background="secondary"
-            borderRadius="7px"
+            borderRadius="7px 7px 0px 7px"
             boxShadow="md"
-            p={8}
+            p={10}
             position="relative"
             zIndex="9999"
+            justifyContent="center"
           >
-            <Box display="flex" gridGap={3}>
-              <Image
-                src={data.avatar}
-                width="50px"
-                height="50px"
-                borderRadius="9999px"
-              />
-              <Heading>{data.nameUser}</Heading>
-            </Box>
-            <Button onClick={onChange}>change</Button>
+            <ThemeOne
+              avatar={data.avatar}
+              nameUser={data.nameUser}
+              about={data.about}
+            />
+            {/* <Button onClick={onChange}>change</Button> */}
             <Box
               borderRadius="0px 0px 10px 10px"
               position="absolute"
