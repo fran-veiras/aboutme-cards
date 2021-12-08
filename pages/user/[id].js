@@ -164,6 +164,6 @@ export async function getStaticProps(context) {
       return { props };
     })
     .catch(() => {
-      return {};
+      return { props: {} };
     });
 }
