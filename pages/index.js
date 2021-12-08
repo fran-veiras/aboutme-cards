@@ -24,7 +24,7 @@ export default function Home() {
       margin="0px"
       padding="0px"
     >
-      <NavBar userData={userData} />
+      <NavBar />
       <Container
         minWidth={{
           base: '95vw', // 0-48em

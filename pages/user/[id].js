@@ -7,6 +7,9 @@ import { ThemeOne } from '../../components/userComponents/themes/ThemeOne';
 import { firestore } from '../../firebase/admin';
 import editar, { addInfo } from '../../firebase/client';
 import useUser from '../../hooks/useUser';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import { store } from 'react-notifications-component';
 
 export default function PostPage(props) {
   const user = useUser();
@@ -16,15 +19,9 @@ export default function PostPage(props) {
     setData(props);
   }, []);
 
-  console.log(data);
-
-  const surname = 'Veiras';
-  const about =
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut tincidunt turpis nisi, ut finibus ante sodales at. Sed porta enim et arcu dictum ultricies. Cras sed fermentum ex, eget commodo risus. Morbi turpis purus, sollicitudin in auctor id, malesuada non quam. ';
-
-  const onChange = () => {
-    editar(user.uid, surname, about);
-  };
+  // working now
+  // working now
+  // working now
 
   // cards
   const [editCard, setEditCard] = useState(false);
@@ -34,69 +31,107 @@ export default function PostPage(props) {
     editCard === true && setEditCard(!true);
   };
 
+  function NotificationAdvice() {
+    store.addNotification({
+      title: 'Los datos se actualizaron correctamente',
+      message:
+        'La próxima vez que se actualice el sitio, se visualizaran los cambios',
+      type: 'success',
+      container: 'top-right',
+      insert: 'top',
+      animationIn: ['animate__animated', 'animate__fadeIn'],
+      animationOut: ['animate__animated', 'animate__fadeOut'],
+      dismiss: {
+        duration: 4000,
+        onScreen: true,
+      },
+    });
+  }
+
   return (
-    <Container
-      minWidth={{
-        base: '95vw', // 0-48em
-        md: '95vw', // 48em-80em,
-        xl: '95vw', // 80em+
-        '2xl': '65vw',
-      }}
-      height="100vh"
-    >
-      {editCard === false && (
-        <Flex
-          width="full"
-          height="full"
-          alignItems="center"
-          justifyContent="center"
-          background="transparent"
-        >
+    <>
+      <ReactNotification />
+      <Container
+        minWidth={{
+          base: '95vw', // 0-48em
+          md: '95vw', // 48em-80em,
+          xl: '95vw', // 80em+
+          '2xl': '65vw',
+        }}
+        height="100vh"
+      >
+        {editCard === false && (
           <Flex
-            wordBreak="break-word"
-            width="80vw"
-            height="70vh"
-            background="secondary"
-            borderRadius="7px 7px 0px 7px"
-            boxShadow="md"
-            p={10}
-            position="relative"
-            zIndex="9999"
+            width="full"
+            height="full"
+            alignItems="center"
             justifyContent="center"
+            background="transparent"
           >
-            <ThemeOne
-              avatar={data.avatar}
-              nameUser={data.nameUser}
-              about={data.about}
-            />
-            {/* <Button onClick={onChange}>change</Button> */}
-            <Box
-              borderRadius="0px 0px 10px 10px"
-              position="absolute"
-              background="tertiary"
+            <Flex
+              wordBreak="break-word"
+              width={{
+                base: '95vw', // 0-48em
+                md: '95vw', // 48em-80em,
+                xl: '60vw', // 80em+
+                '2xl': '40vw',
+              }}
+              height={{
+                base: '95vh', // 0-48em
+                md: '95vh', // 48em-80em,
+                xl: '80vh', // 80em+
+                '2xl': '80vh',
+              }}
+              background="secondary"
+              borderRadius="7px 7px 0px 7px"
               boxShadow="md"
-              width="100px"
-              height="50px"
-              bottom="-50"
-              right="0"
-              zIndex="9998"
-              cursor="pointer"
-              display="flex"
-              justifyContent="center"
-              alignItems="center"
-              onClick={changeSelect}
+              position="relative"
             >
-              <Text color="#000" variant="paragraph">
-                Editar
-              </Text>
-            </Box>
+              <ThemeOne
+                avatar={data.avatar}
+                nameUser={data.name}
+                surname={data.surname}
+                about={data.about}
+                languages={data.lenguage}
+                skills={data.skills}
+                exp={data.exp}
+                socialData={data.social}
+              />
+              {/* <Button onClick={onChange}>change</Button> */}
+              <Box
+                borderRadius="0px 0px 10px 10px"
+                position="absolute"
+                background="tertiary"
+                boxShadow="md"
+                width="100px"
+                height="50px"
+                bottom="-50"
+                right="0"
+                zIndex="9998"
+                cursor="pointer"
+                display="flex"
+                justifyContent="center"
+                alignItems="center"
+                onClick={changeSelect}
+              >
+                <Text color="#000" variant="paragraph">
+                  Editar
+                </Text>
+              </Box>
+            </Flex>
           </Flex>
-        </Flex>
-      )}
-      {editCard === true && (
-        <EditProfile editCard={editCard} setEditCard={setEditCard} />
-      )}
-    </Container>
+        )}
+        {editCard === true && (
+          <EditProfile
+            data={data}
+            editCard={editCard}
+            setEditCard={setEditCard}
+            userId={user.uid}
+            NotificationAdvice={NotificationAdvice}
+          />
+        )}
+      </Container>
+    </>
   );
 }
 

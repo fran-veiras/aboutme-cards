@@ -33,11 +33,15 @@ export default function Login() {
         email: user.email,
         username: user.username,
         uid: user.uid,
-        nameUser: '',
+        nameUser: nameUser,
         surname: '',
         about: '',
-        social: '',
-        exp: '',
+        social: social,
+        exp: [],
+        name: '',
+        lenguage: [],
+        skills: '',
+        experience: '',
       });
   };
 
@@ -54,10 +58,29 @@ export default function Login() {
         nameUser: nameUser,
         surname: '',
         about: '',
-        social: '',
-        exp: '',
+        social: social,
+        exp: [],
+        name: '',
+        lenguage: [],
+        skills: '',
       });
   };
+
+  const social = [
+    {
+      Linkedin: '',
+      Facebook: '',
+      Instagram: '',
+      Github: '',
+      Patreon: '',
+      Twitch: '',
+      Twitter: '',
+      Website: '',
+      WhatsApp: '',
+      Youtube: '',
+      Cafecito: '',
+    },
+  ];
 
   const [nameUser, setNameUser] = useState('');
 

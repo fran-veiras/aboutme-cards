@@ -2,15 +2,78 @@
 import { Image } from '@chakra-ui/image';
 import { Box, Flex, Heading, Text } from '@chakra-ui/layout';
 import { Input, SelectField } from '@chakra-ui/react';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { InputGroup, InputLeftAddon } from '@chakra-ui/input';
 import { Textarea } from '@chakra-ui/textarea';
 import { Select } from '@chakra-ui/select';
+import editar from '../../../firebase/client';
+import { LenguagesComp } from './lenguages';
+import { ExperienceComponent } from './experience';
+import { SocialMediaComp } from './social';
 
-export const EditProfile = ({ setEditCard, editCard }) => {
+export const EditProfile = ({
+  setEditCard,
+  editCard,
+  data,
+  userId,
+  NotificationAdvice,
+}) => {
   const changeSelect = () => {
     editCard === false && setEditCard(!false);
     editCard === true && setEditCard(!true);
+  };
+
+  // edit data
+
+  const [surname, setSurname] = useState([]);
+  const [name, setName] = useState([]);
+  const [lenguage, setLenguage] = useState([]);
+  const [skills, setSkills] = useState([]);
+  const [experience, setExperience] = useState([]);
+  const [social, setSocial] = useState([]);
+  const [about, setAbout] = useState([]);
+
+  useEffect(() => {
+    setSurname(data.surname);
+    setName(data.name);
+    setLenguage(data.lenguage);
+    setSkills(data.skills);
+    setExperience(data.exp);
+    setSocial(data.social);
+    setAbout(data.about);
+  }, [data]);
+
+  const handleSurname = (e) => {
+    setSurname(e.target.value);
+  };
+
+  const handleName = (e) => {
+    setName(e.target.value);
+  };
+
+  const handleLenguague = (e) => {
+    setLenguage((val) => [...val, e.target.value]);
+  };
+
+  const handleSkills = (e) => {
+    setSkills(e.target.value);
+  };
+
+  const handleAbout = (e) => {
+    setAbout(e.target.value);
+  };
+
+  const sendData = () => {
+    editar(
+      userId,
+      surname,
+      name,
+      lenguage,
+      skills,
+      experience,
+      social,
+      about
+    ) && NotificationAdvice();
   };
 
   return (
@@ -37,22 +100,20 @@ export const EditProfile = ({ setEditCard, editCard }) => {
           <InputGroup gridGap={3}>
             <Box display="flex">
               <InputLeftAddon children="Nombre" />
-              <Input />
+              <Input value={name} onChange={handleName} />
             </Box>
             <Box display="flex">
               <InputLeftAddon children="Apellido" />
-              <Input />
-            </Box>
-          </InputGroup>
-          <InputGroup>
-            <Box width="50%" display="flex">
-              <InputLeftAddon children="Email" />
-              <Input />
+              <Input value={surname} onChange={handleSurname} />
             </Box>
           </InputGroup>
           <InputGroup>
             <InputLeftAddon children="Idiomas" />
-            <Select placeholder="Elige una opción">
+            <Select
+              value={lenguage}
+              onChange={handleLenguague}
+              placeholder="Elige una opción"
+            >
               <option value="Inglés - Básico">Inglés - Básico</option>
               <option value="Inglés - Intermedio">Inglés - Intermedio</option>
               <option value="Inglés - Avanzado">Inglés - Avanzado</option>
@@ -72,32 +133,25 @@ export const EditProfile = ({ setEditCard, editCard }) => {
               <option value="Ruso - Avanzado">Ruso - Avanzado</option>
             </Select>
           </InputGroup>
-          <InputGroup>
-            <InputLeftAddon children="País" />
-            <Input />
-          </InputGroup>
+          <Flex gridGap={3}>
+            {lenguage.map((val) => (
+              <LenguagesComp key={val} value={val} setLenguage={setLenguage} />
+            ))}
+          </Flex>
           <InputGroup>
             <InputLeftAddon children="Acerca de vos" />
-            <Textarea />
+            <Textarea value={about} onChange={handleAbout} />
           </InputGroup>
           <InputGroup>
             <InputLeftAddon children="Habilidades" />
-            <Input />
+            <Input value={skills} onChange={handleSkills} />
           </InputGroup>
-          <InputGroup>
-            <InputLeftAddon children="Cargo" />
-            <Input />
-            <InputLeftAddon children="Años" />
-            <Select placeholder="Elige una opción">
-              <option value="-1 año">-1 año</option>
-              <option value="1 año">1 año</option>
-              <option value="2 años">2 años</option>
-              <option value="3 años">3 años</option>
-              <option value="4 años">4 años</option>
-              <option value="5 años">5 años</option>
-              <option value="+5 años">+5 años</option>
-            </Select>
-          </InputGroup>
+
+          <ExperienceComponent
+            experience={experience}
+            setExperience={setExperience}
+          />
+          <SocialMediaComp setSocial={setSocial} social={social} />
         </Box>
         <Box
           borderRadius="0px 0px 10px 10px"
@@ -115,7 +169,7 @@ export const EditProfile = ({ setEditCard, editCard }) => {
           alignItems="center"
           onClick={changeSelect}
         >
-          <Text color="#000" variant="paragraph">
+          <Text onClick={sendData} color="#000" variant="paragraph">
             Confirmar
           </Text>
         </Box>

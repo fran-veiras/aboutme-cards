@@ -43,7 +43,7 @@ export const NavBar = () => {
           </Button>
         )}
         {user !== USER_STATES.NOT_LOGED && user !== USER_STATES.NOT_KNOWN && (
-          <ProfileAcordion user={user.avatar} />
+          <ProfileAcordion avatar={user.avatar} userId={user.uid} />
         )}
       </Box>
     </Flex>
