@@ -10,14 +10,18 @@ import useUser from '../../hooks/useUser';
 import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import { store } from 'react-notifications-component';
+import { useRouter } from 'next/dist/client/router';
 
 export default function PostPage(props) {
   const user = useUser();
   const [data, setData] = useState([]);
+  const route = useRouter();
 
   useEffect(() => {
     setData(props);
   }, []);
+
+  console.log(data);
 
   // working now
   // working now
@@ -30,6 +34,8 @@ export default function PostPage(props) {
     editCard === false && setEditCard(!false);
     editCard === true && setEditCard(!true);
   };
+
+  if (route.isFallback) return <h1>Cargando...</h1>;
 
   function NotificationAdvice() {
     store.addNotification({
@@ -52,12 +58,8 @@ export default function PostPage(props) {
     <>
       <ReactNotification />
       <Container
-        minWidth={{
-          base: '95vw', // 0-48em
-          md: '95vw', // 48em-80em,
-          xl: '95vw', // 80em+
-          '2xl': '65vw',
-        }}
+        minWidth="100vw"
+        backgroundImage={`${'/back.jpg'}`}
         height="100vh"
       >
         {editCard === false && (
@@ -82,7 +84,7 @@ export default function PostPage(props) {
                 xl: '80vh', // 80em+
                 '2xl': '80vh',
               }}
-              background="secondary"
+              background="green.100"
               borderRadius="7px 7px 0px 7px"
               boxShadow="md"
               position="relative"

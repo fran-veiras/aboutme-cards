@@ -30,8 +30,8 @@ export const ThemeOne = ({
     socialData !== undefined && socialData !== null && socialData[0];
 
   return (
-    <Box display="flex" gridGap={3}>
-      <Flex gridGap={10} flexDir="column">
+    <Box display="flex" gridGap={3} width="full">
+      <Flex gridGap={10} flexDir="column" width="full">
         <Flex
           p={10}
           gridGap={6}
@@ -46,10 +46,27 @@ export const ThemeOne = ({
             height="150px"
             borderRadius="9999px"
           />
-          <Flex flexDir="column">
+          <Flex flexDir="column" width="full">
             <Heading color="#000" variant="secondary">
               {nameUser} {surname}
             </Heading>
+            {nameUser !== undefined && nameUser.length === 0 && (
+              <>
+                <Box
+                  width="full"
+                  height="20px"
+                  background="gray.100"
+                  borderRadius="7px"
+                  my={3}
+                ></Box>
+                <Box
+                  width="full"
+                  height="20px"
+                  background="gray.100"
+                  borderRadius="7px"
+                ></Box>
+              </>
+            )}
             <Text color="#000" variant="paragraph">
               {about}
             </Text>
@@ -63,11 +80,29 @@ export const ThemeOne = ({
           flexDir="column"
           height="full"
           justifyContent="space-between"
+          width="full"
         >
-          <Box>
+          <Box width="full">
             <Heading mb={2} variant="subtitles">
               Habilidades
             </Heading>
+            {skills !== undefined && skills.length === 0 && (
+              <>
+                <Box
+                  width="full"
+                  height="20px"
+                  background="gray.100"
+                  borderRadius="7px"
+                  my={3}
+                ></Box>
+                <Box
+                  width="full"
+                  height="20px"
+                  background="gray.100"
+                  borderRadius="7px"
+                ></Box>
+              </>
+            )}
             <Box
               borderRadius="5px"
               display="inline-block"

@@ -86,7 +86,7 @@ export const EditProfile = ({
       <Flex
         width="80vw"
         height="70vh"
-        background="perimary"
+        background="#fff"
         borderRadius="7px 7px 0px 7px"
         boxShadow="md"
         p={8}
