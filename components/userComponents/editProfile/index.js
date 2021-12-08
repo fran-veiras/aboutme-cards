@@ -10,6 +10,7 @@ import editar from '../../../firebase/client';
 import { LenguagesComp } from './lenguages';
 import { ExperienceComponent } from './experience';
 import { SocialMediaComp } from './social';
+import { SelectColorComp } from './selectColor';
 
 export const EditProfile = ({
   setEditCard,
@@ -32,6 +33,7 @@ export const EditProfile = ({
   const [experience, setExperience] = useState([]);
   const [social, setSocial] = useState([]);
   const [about, setAbout] = useState([]);
+  const [color, setColor] = useState([]);
 
   useEffect(() => {
     setSurname(data.surname);
@@ -41,6 +43,7 @@ export const EditProfile = ({
     setExperience(data.exp);
     setSocial(data.social);
     setAbout(data.about);
+    setColor(data.color);
   }, [data]);
 
   const handleSurname = (e) => {
@@ -72,7 +75,8 @@ export const EditProfile = ({
       skills,
       experience,
       social,
-      about
+      about,
+      color
     ) && NotificationAdvice();
   };
 
@@ -152,6 +156,7 @@ export const EditProfile = ({
             setExperience={setExperience}
           />
           <SocialMediaComp setSocial={setSocial} social={social} />
+          <SelectColorComp setColorId={setColor} />
         </Box>
         <Box
           borderRadius="0px 0px 10px 10px"

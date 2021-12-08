@@ -1,17 +1,14 @@
 import { Button } from '@chakra-ui/button';
 import { Box, Container, Flex, Heading, Text } from '@chakra-ui/layout';
 import { useRouter } from 'next/dist/client/router';
-import { useEffect, useState } from 'react';
-import { CreateAccount } from '../../components/main/CreateAccount.js';
-import { ComponentDuplicated } from '../../components/main/CreateAccount.js/componentDuplicated.js';
-import { MainContentPort } from '../../components/main/MainContentPort';
+import { useState } from 'react';
 import { NavBar } from '../../components/NavBar';
 import {
   addInfo,
   loginWithGitHub,
   loginWithGoogle,
 } from '../../firebase/client';
-import useUser from '../../hooks/useUser';
+import useUser, { USER_STATES } from '../../hooks/useUser';
 import GitHub from '../../public/github';
 import GoogleIcon from '../../public/googleIcon';
 
@@ -19,15 +16,8 @@ export default function Login() {
   const user = useUser();
   const router = useRouter();
 
-  const handleGitHubLogin = () => {
-    loginWithGitHub().catch((err) => {
-      console.log(
-        alert(
-          'este email ya se encuentra registrado con google, por favor inicia con google'
-        )
-      );
-    }) &&
-      user &&
+  const createCard = () => {
+    user &&
       addInfo({
         avatar: user.avatar,
         email: user.email,
@@ -42,28 +32,25 @@ export default function Login() {
         lenguage: [],
         skills: '',
         experience: '',
-      });
+        color: '#C6F6D5',
+      }) &&
+      router.push(`/user/${user.uid}`);
+  };
+
+  const handleGitHubLogin = () => {
+    loginWithGitHub().catch((err) => {
+      console.log(
+        alert(
+          'este email ya se encuentra registrado con google, por favor inicia con google'
+        )
+      );
+    });
   };
 
   const handleGoogleLogin = () => {
     loginWithGoogle().catch((err) => {
       console.log(err);
-    }) &&
-      user &&
-      addInfo({
-        avatar: user.avatar,
-        email: user.email,
-        username: user.username,
-        uid: user.uid,
-        nameUser: nameUser,
-        surname: '',
-        about: '',
-        social: social,
-        exp: [],
-        name: '',
-        lenguage: [],
-        skills: '',
-      });
+    });
   };
 
   const social = [
@@ -92,13 +79,12 @@ export default function Login() {
           base: '95vw', // 0-48em
           md: '95vw', // 48em-80em,
           xl: '95vw', // 80em+
-          '2xl': '65vw',
+          '2xl': '45vw',
         }}
         justifyContent="center"
         height="80vh"
         mt={10}
       >
-        <ComponentDuplicated setNameUser={setNameUser} />
         <Flex textAlign="center" flexDir="column" gridGap={5}>
           <Heading color="primary" variant="secondary">
             Nos alegra verte aquí.
@@ -122,6 +108,15 @@ export default function Login() {
               Login con Google <GoogleIcon />
             </Button>
           </Flex>
+          {user !== USER_STATES.NOT_LOGED && user !== USER_STATES.NOT_KNOWN && (
+            <Flex gridGap={3} justifyContent="center" flexDir="column">
+              <Button onClick={createCard}>Crear nueva card</Button>
+              <Text>
+                Tenga en cuenta que si ya posee una, al usar Crear nueva card
+                puede empezar desde cero*
+              </Text>
+            </Flex>
+          )}
         </Flex>
       </Container>
     </>

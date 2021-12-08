@@ -61,6 +61,7 @@ export const addInfo = ({
   lenguage,
   skills,
   exp,
+  color,
 }) => {
   return db
     .collection('users')
@@ -78,6 +79,7 @@ export const addInfo = ({
       exp,
       lenguage,
       skills,
+      color,
       createdAt: firebase.firestore.Timestamp.fromDate(new Date()),
     });
 };
@@ -106,7 +108,8 @@ export default function editar(
   skills,
   exp,
   social,
-  about
+  about,
+  color
 ) {
   var washingtonRef = db.collection('users').doc(id);
 
@@ -119,6 +122,7 @@ export default function editar(
       exp,
       social,
       about,
+      color,
     })
     .then(() => {
       console.log('Document successfully updated!');
@@ -128,3 +132,15 @@ export default function editar(
       console.error('Error updating document: ', error);
     });
 }
+
+export const signOut = async () => {
+  try {
+    await firebase.auth().signOut();
+
+    this.props.navigator.push({
+      name: 'Login',
+    });
+  } catch (error) {
+    console.log(error);
+  }
+};

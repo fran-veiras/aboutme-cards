@@ -8,8 +8,13 @@ import {
 } from '@chakra-ui/accordion';
 import { Divider, Text } from '@chakra-ui/layout';
 import { Image } from '@chakra-ui/image';
+import { signOut } from '../../../firebase/client';
 
 export const ProfileAcordion = ({ avatar, userId }) => {
+  const closeAppSesion = () => {
+    signOut();
+  };
+
   return (
     <Accordion
       width="140px"
@@ -48,7 +53,7 @@ export const ProfileAcordion = ({ avatar, userId }) => {
           </a>
           <Divider />
 
-          <Text color="#000" variant="paragraph">
+          <Text onClick={closeAppSesion} color="#000" variant="paragraph">
             Cerrar sesión
           </Text>
         </AccordionPanel>

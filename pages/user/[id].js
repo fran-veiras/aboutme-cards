@@ -11,6 +11,8 @@ import ReactNotification from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css';
 import { store } from 'react-notifications-component';
 import { useRouter } from 'next/dist/client/router';
+import { NavBar } from '../../components/NavBar';
+import { NavBarCards } from '../../components/NavBar/index copy';
 
 export default function PostPage(props) {
   const user = useUser();
@@ -20,8 +22,6 @@ export default function PostPage(props) {
   useEffect(() => {
     setData(props);
   }, []);
-
-  console.log(data);
 
   // working now
   // working now
@@ -56,6 +56,7 @@ export default function PostPage(props) {
 
   return (
     <>
+      <NavBarCards />
       <ReactNotification />
       <Container
         minWidth="100vw"
@@ -78,13 +79,7 @@ export default function PostPage(props) {
                 xl: '60vw', // 80em+
                 '2xl': '40vw',
               }}
-              height={{
-                base: '95vh', // 0-48em
-                md: '95vh', // 48em-80em,
-                xl: '80vh', // 80em+
-                '2xl': '80vh',
-              }}
-              background="green.100"
+              background={data.color}
               borderRadius="7px 7px 0px 7px"
               boxShadow="md"
               position="relative"
@@ -98,40 +93,47 @@ export default function PostPage(props) {
                 skills={data.skills}
                 exp={data.exp}
                 socialData={data.social}
+                color={data.color}
+                secondaryColor={data.color + '99'}
               />
               {/* <Button onClick={onChange}>change</Button> */}
-              <Box
-                borderRadius="0px 0px 10px 10px"
-                position="absolute"
-                background="tertiary"
-                boxShadow="md"
-                width="100px"
-                height="50px"
-                bottom="-50"
-                right="0"
-                zIndex="9998"
-                cursor="pointer"
-                display="flex"
-                justifyContent="center"
-                alignItems="center"
-                onClick={changeSelect}
-              >
-                <Text color="#000" variant="paragraph">
-                  Editar
-                </Text>
-              </Box>
+              {user !== undefined && user !== null && user.uid === data.uid && (
+                <Box
+                  borderRadius="0px 0px 10px 10px"
+                  position="absolute"
+                  background={data.color + '99'}
+                  boxShadow="md"
+                  width="100px"
+                  height="50px"
+                  bottom="-50"
+                  right="0"
+                  zIndex="9998"
+                  cursor="pointer"
+                  display="flex"
+                  justifyContent="center"
+                  alignItems="center"
+                  onClick={changeSelect}
+                >
+                  <Text color="#000" variant="paragraph">
+                    Editar
+                  </Text>
+                </Box>
+              )}
             </Flex>
           </Flex>
         )}
-        {editCard === true && (
-          <EditProfile
-            data={data}
-            editCard={editCard}
-            setEditCard={setEditCard}
-            userId={user.uid}
-            NotificationAdvice={NotificationAdvice}
-          />
-        )}
+        {user !== undefined &&
+          user !== null &&
+          user.uid === data.uid &&
+          editCard === true && (
+            <EditProfile
+              data={data}
+              editCard={editCard}
+              setEditCard={setEditCard}
+              userId={user.uid}
+              NotificationAdvice={NotificationAdvice}
+            />
+          )}
       </Container>
     </>
   );

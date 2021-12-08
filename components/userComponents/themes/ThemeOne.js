@@ -25,13 +25,15 @@ export const ThemeOne = ({
   skills,
   exp,
   socialData,
+  secondaryColor,
+  color,
 }) => {
   const social =
     socialData !== undefined && socialData !== null && socialData[0];
 
   return (
     <Box display="flex" gridGap={3} width="full">
-      <Flex gridGap={10} flexDir="column" width="full">
+      <Flex flexDir="column" width="full">
         <Flex
           p={10}
           gridGap={6}
@@ -55,7 +57,7 @@ export const ThemeOne = ({
                 <Box
                   width="full"
                   height="20px"
-                  background="gray.100"
+                  background={secondaryColor}
                   borderRadius="7px"
                   my={3}
                 ></Box>
@@ -74,16 +76,15 @@ export const ThemeOne = ({
         </Flex>
         <Box
           display="flex"
-          gridGap={5}
-          py={5}
-          px={10}
+          gridGap={6}
+          p={10}
           flexDir="column"
           height="full"
           justifyContent="space-between"
           width="full"
         >
           <Box width="full">
-            <Heading mb={2} variant="subtitles">
+            <Heading color="#000" mb={2} variant="subtitles">
               Habilidades
             </Heading>
             {skills !== undefined && skills.length === 0 && (
@@ -113,7 +114,7 @@ export const ThemeOne = ({
             </Box>
           </Box>
           <Box>
-            <Heading mb={2} variant="subtitles">
+            <Heading color="#000" mb={2} variant="subtitles">
               Experiencia
             </Heading>
 
@@ -133,7 +134,7 @@ export const ThemeOne = ({
             px={10}
             py={5}
             display="flex"
-            background="text"
+            background="#fff"
             borderRadius="7px"
           >
             <Text color="#000" variant="paragraph">
