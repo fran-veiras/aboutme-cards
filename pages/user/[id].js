@@ -178,7 +178,7 @@ export async function getStaticProps(context) {
         createdAt: +createdAt.toDate(),
       };
 
-      return { props };
+      return { props, revalidate: 5 };
     })
     .catch(() => {
       return { props: {} };
