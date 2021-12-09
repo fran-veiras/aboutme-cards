@@ -77,7 +77,7 @@ export const EditProfile = ({
       social,
       about,
       color
-    ) && NotificationAdvice();
+    ) && NotificationAdvice() & changeSelect();
   };
 
   return (
@@ -172,7 +172,6 @@ export const EditProfile = ({
           display="flex"
           justifyContent="center"
           alignItems="center"
-          onClick={changeSelect}
         >
           <Text onClick={sendData} color="#000" variant="paragraph">
             Confirmar
