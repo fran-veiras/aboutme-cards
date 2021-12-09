@@ -14,6 +14,7 @@ import { useRouter } from 'next/dist/client/router';
 import { NavBar } from '../../components/NavBar';
 import { NavBarCards } from '../../components/NavBar/index copy';
 import { Spinner } from '@chakra-ui/react';
+import Head from 'next/head';
 
 export default function PostPage(props) {
   const user = useUser();
@@ -27,8 +28,6 @@ export default function PostPage(props) {
   useEffect(() => {
     setData(props);
   }, [props]);
-
-  console.log(props);
 
   // working now
   // working now
@@ -76,6 +75,18 @@ export default function PostPage(props) {
         backgroundImage={`${'/back.jpg'}`}
         height="100vh"
       >
+        <Head>
+          <title>AboutMe | {data.name + ' ' + data.surname}</title>
+          <link rel="shortcut icon" href="/logo.png" />
+        </Head>
+        <Box
+          width="full"
+          height="full"
+          position="absolute"
+          left="0"
+          top="0"
+          background={data.color + 59}
+        ></Box>
         {editCard === false && (
           <Flex
             width="full"

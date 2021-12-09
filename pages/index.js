@@ -1,6 +1,7 @@
 import { Container } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
+import { AboutAppComponent } from '../components/main/about/index.js';
 import { CreateAccount } from '../components/main/CreateAccount.js';
 import { MainContentPort } from '../components/main/MainContentPort';
 import { TemasEditables } from '../components/main/TemasEditables/index.js';
@@ -24,6 +25,10 @@ export default function Home() {
       margin="0px"
       padding="0px"
     >
+      <Head>
+        <title>AboutMe - Cards</title>
+        <link rel="shortcut icon" href="/logo.png" />
+      </Head>
       <NavBar />
       <Container
         minWidth={{
@@ -37,6 +42,7 @@ export default function Home() {
         <MainContentPort />
         <CreateAccount />
         <TemasEditables />
+        <AboutAppComponent />
       </Container>
     </Container>
   );

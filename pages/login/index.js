@@ -1,5 +1,6 @@
 import { Button } from '@chakra-ui/button';
 import { Box, Container, Flex, Heading, Text } from '@chakra-ui/layout';
+import { Spinner } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
 import { NavBar } from '../../components/NavBar';
@@ -15,6 +16,8 @@ import GoogleIcon from '../../public/googleIcon';
 export default function Login() {
   const user = useUser();
   const router = useRouter();
+
+  const [loading, setLoading] = useState(false);
 
   const createCard = () => {
     user &&
@@ -34,7 +37,8 @@ export default function Login() {
         experience: '',
         color: '#C6F6D5',
       }) &&
-      router.push(`/user/${user.uid}`);
+      loading === false &&
+      setLoading(!false) & router.replace(`/user/${user.uid}`);
   };
 
   const handleGitHubLogin = () => {
@@ -110,11 +114,21 @@ export default function Login() {
           </Flex>
           {user !== USER_STATES.NOT_LOGED && user !== USER_STATES.NOT_KNOWN && (
             <Flex gridGap={3} justifyContent="center" flexDir="column">
-              <Button onClick={createCard}>Crear nueva card</Button>
-              <Text>
-                Tenga en cuenta que si ya posee una, al usar Crear nueva card
-                puede empezar desde cero*
-              </Text>
+              {loading === false && (
+                <Button onClick={createCard}>Crear nueva card</Button>
+              )}
+              {loading === true && (
+                <Button onClick={createCard}>
+                  <Spinner />
+                </Button>
+              )}
+              {loading === false && (
+                <Text>
+                  Tenga en cuenta que si ya posee una, al usar Crear nueva card
+                  puede empezar desde cero*
+                </Text>
+              )}
+              {loading === true && <Text>El sitio se esta generando...</Text>}
             </Flex>
           )}
         </Flex>

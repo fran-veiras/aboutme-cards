@@ -20,7 +20,13 @@ export const NavBarCards = () => {
   };
 
   return (
-    <Flex position="absolute" w="full" height="80px" justifyContent="center">
+    <Flex
+      zIndex="9999"
+      position="absolute"
+      w="full"
+      height="80px"
+      justifyContent="center"
+    >
       <Box
         display="flex"
         alignItems="center"
@@ -33,9 +39,28 @@ export const NavBarCards = () => {
         }}
         py={2}
       >
-        <Heading onClick={handleHome} cursor="pointer" variant="primary">
-          ABOUTME APP
-        </Heading>
+        <Box display="flex" flexDir="row" alignItems="center" gridGap={3}>
+          <Heading
+            color="#fff"
+            onClick={handleHome}
+            cursor="pointer"
+            variant="primary"
+          >
+            ABOUTME APP
+          </Heading>
+          <Box
+            background="#fff"
+            width="40px"
+            height="40px"
+            p={2}
+            borderRadius="9999px"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+          >
+            <Image width="full" src={'/logo.png'} />
+          </Box>
+        </Box>
 
         {user === USER_STATES.NOT_LOGED && (
           <Button onClick={handleLogin} variant="primary">
