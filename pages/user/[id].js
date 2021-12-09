@@ -28,6 +28,8 @@ export default function PostPage(props) {
     setData(props);
   }, [props]);
 
+  console.log(props);
+
   // working now
   // working now
   // working now
