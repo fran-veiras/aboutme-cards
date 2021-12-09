@@ -13,6 +13,7 @@ import { store } from 'react-notifications-component';
 import { useRouter } from 'next/dist/client/router';
 import { NavBar } from '../../components/NavBar';
 import { NavBarCards } from '../../components/NavBar/index copy';
+import { Spinner } from '@chakra-ui/react';
 
 export default function PostPage(props) {
   const user = useUser();
@@ -22,6 +23,10 @@ export default function PostPage(props) {
   useEffect(() => {
     setData(props);
   }, []);
+
+  useEffect(() => {
+    setData(props);
+  }, [props]);
 
   // working now
   // working now
@@ -35,7 +40,13 @@ export default function PostPage(props) {
     editCard === true && setEditCard(!true);
   };
 
-  if (route.isFallback) return <h1>Cargando...</h1>;
+  if (route.isFallback)
+    return (
+      <>
+        <h1>Cargando...</h1>
+        <Spinner />
+      </>
+    );
 
   function NotificationAdvice() {
     store.addNotification({
