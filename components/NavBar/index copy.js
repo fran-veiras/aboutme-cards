@@ -26,6 +26,7 @@ export const NavBarCards = () => {
       w="full"
       height="80px"
       justifyContent="center"
+      alignItems="center"
     >
       <Box
         display="flex"
@@ -49,6 +50,8 @@ export const NavBarCards = () => {
             ABOUTME APP
           </Heading>
           <Box
+            onClick={handleHome}
+            cursor="pointer"
             background="#fff"
             width="40px"
             height="40px"

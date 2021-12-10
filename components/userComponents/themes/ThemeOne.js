@@ -118,13 +118,13 @@ export const ThemeOne = ({
               Experiencia
             </Heading>
 
-            <Box mt={3} display="flex" gridGap={3}>
+            <Box mt={3} display="flex" flexFlow="row wrap" gridGap={3}>
               {exp !== undefined &&
                 exp.map((val) => (
                   <ExperienceComp key={val.position} value={val} />
                 ))}
             </Box>
-            <Box mt={3} display="flex" gridGap={3}>
+            <Box flexFlow="row wrap" mt={3} display="flex" gridGap={3}>
               {languages !== undefined &&
                 languages.map((val) => <LanguagesComp key={val} value={val} />)}
             </Box>

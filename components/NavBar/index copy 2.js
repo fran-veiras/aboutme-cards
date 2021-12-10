@@ -7,7 +7,7 @@ import React from 'react';
 import useUser, { USER_STATES } from '../../hooks/useUser';
 import { ProfileAcordion } from './profileAccordion';
 
-export const NavBar = () => {
+export const NavBarCopy2 = () => {
   const route = useRouter();
   const user = useUser();
 
@@ -20,7 +20,13 @@ export const NavBar = () => {
   };
 
   return (
-    <Flex alignItems="center" w="full" height="80px" justifyContent="center">
+    <Flex
+      background="secondary"
+      w="full"
+      height="80px"
+      justifyContent="center"
+      alignItems="center"
+    >
       <Box
         display="flex"
         alignItems="center"

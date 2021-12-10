@@ -41,7 +41,10 @@ export const ExperienceComponent = ({ setExperience, experience }) => {
     if (position.length === 0 || years.length === 0) {
       Notif();
     } else {
-      setExperience((val) => [...val, { position: position, years: years }]);
+      experience.length < 10 &&
+        setExperience((val) => [...val, { position: position, years: years }]) &
+          setPosition('') &
+          setYears('');
     }
   };
 
@@ -49,7 +52,12 @@ export const ExperienceComponent = ({ setExperience, experience }) => {
     <>
       <InputGroup>
         <InputLeftAddon children="Cargo" />
-        <Input value={position} onChange={handlePosition} />
+        <Input
+          placeholder="Máx. 10 experiencias"
+          maxlength="30"
+          value={position}
+          onChange={handlePosition}
+        />
         <InputLeftAddon children="Años" />
         <Select
           value={years}
@@ -66,11 +74,12 @@ export const ExperienceComponent = ({ setExperience, experience }) => {
         </Select>
         <Button onClick={sendData}>Añadir</Button>
       </InputGroup>
-      <Box display="flex" gridGap={3}>
+      <Box display="flex" flexFlow="row wrap" gridGap={3}>
         {experience.map((val) => (
           <CurrentExp
             key={val.position}
             value={val}
+            experience={experience}
             setExperience={setExperience}
           />
         ))}

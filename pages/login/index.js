@@ -4,6 +4,7 @@ import { Spinner } from '@chakra-ui/react';
 import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
 import { NavBar } from '../../components/NavBar';
+import { NavBarCopy2 } from '../../components/NavBar/index copy 2';
 import {
   addInfo,
   loginWithGitHub,
@@ -77,7 +78,7 @@ export default function Login() {
 
   return (
     <>
-      <NavBar />
+      <NavBarCopy2 />
       <Container
         minWidth={{
           base: '95vw', // 0-48em
@@ -124,8 +125,8 @@ export default function Login() {
               )}
               {loading === false && (
                 <Text>
-                  Tenga en cuenta que si ya posee una, al usar Crear nueva card
-                  puede empezar desde cero*
+                  Tenga en cuenta que si ya posee una Card, al usar Crear nueva
+                  card puede empezar desde cero*
                 </Text>
               )}
               {loading === true && <Text>El sitio se esta generando...</Text>}

@@ -55,7 +55,7 @@ export const EditProfile = ({
   };
 
   const handleLenguague = (e) => {
-    setLenguage((val) => [...val, e.target.value]);
+    lenguage.length < 6 && setLenguage((val) => [...val, e.target.value]);
   };
 
   const handleSkills = (e) => {
@@ -89,7 +89,7 @@ export const EditProfile = ({
     >
       <Flex
         width="80vw"
-        height="70vh"
+        minHeight="70vh"
         background="#fff"
         borderRadius="7px 7px 0px 7px"
         boxShadow="md"
@@ -104,11 +104,11 @@ export const EditProfile = ({
           <InputGroup gridGap={3}>
             <Box display="flex">
               <InputLeftAddon children="Nombre" />
-              <Input value={name} onChange={handleName} />
+              <Input maxlength="25" value={name} onChange={handleName} />
             </Box>
             <Box display="flex">
               <InputLeftAddon children="Apellido" />
-              <Input value={surname} onChange={handleSurname} />
+              <Input maxlength="25" value={surname} onChange={handleSurname} />
             </Box>
           </InputGroup>
           <InputGroup>
@@ -132,23 +132,39 @@ export const EditProfile = ({
               <option value="Alemán - Básico">Alemán - Básico</option>
               <option value="Alemán - Intermedio">Alemán - Intermedio</option>
               <option value="Alemán - Avanzado">Alemán - Avanzado</option>
+              <option value="Italiano - Básico">Italiano - Básico</option>
+              <option value="Italiano - Intermedio">
+                Italiano - Intermedio
+              </option>
+              <option value="Italiano - Avanzado">Italiano - Avanzado</option>
               <option value="Ruso - Básico">Ruso - Básico</option>
               <option value="Ruso - Intermedio">Ruso - Intermedio</option>
               <option value="Ruso - Avanzado">Ruso - Avanzado</option>
             </Select>
           </InputGroup>
-          <Flex gridGap={3}>
+          <Flex flexFlow="row wrap" gridGap={3}>
             {lenguage.map((val) => (
               <LenguagesComp key={val} value={val} setLenguage={setLenguage} />
             ))}
           </Flex>
           <InputGroup>
             <InputLeftAddon children="Acerca de vos" />
-            <Textarea value={about} onChange={handleAbout} />
+            <Textarea
+              maxlength="250"
+              placeholder="máx. 250 caracteres"
+              maxH="120px"
+              value={about}
+              onChange={handleAbout}
+            />
           </InputGroup>
           <InputGroup>
             <InputLeftAddon children="Habilidades" />
-            <Input value={skills} onChange={handleSkills} />
+            <Input
+              placeholder="máx. 150 caracteres"
+              maxlength="150"
+              value={skills}
+              onChange={handleSkills}
+            />
           </InputGroup>
 
           <ExperienceComponent

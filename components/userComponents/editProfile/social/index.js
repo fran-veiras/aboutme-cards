@@ -69,10 +69,10 @@ export const SocialMediaComp = ({ setSocial, social }) => {
           <option value="Cafecito">Cafecito</option>
         </Select>
         <InputLeftAddon children="URL" />
-        <Input value={URL} onChange={handleUrl} />
+        <Input maxlength="80" value={URL} onChange={handleUrl} />
         <Button onClick={sendData}>Añadir</Button>
       </InputGroup>
-      <Flex gridGap={3}>
+      <Flex flexFlow="row wrap" gridGap={3}>
         {social[0] !== undefined &&
           social[0] !== null &&
           Object.keys(social[0]).map((val) => (

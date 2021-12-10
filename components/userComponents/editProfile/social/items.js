@@ -23,7 +23,8 @@ export const ItemsSocial = ({ value, social, setSocial }) => {
           borderRadius="9999px"
         >
           <Text color="#000" variant="paragraph">
-            {social[0][value]}
+            {social[0][value].length > 45 && social[0][value].substr(0, 30)}
+            {social[0][value].length < 45 && social[0][value].substr(0, 30)}
           </Text>
           <CloseIcon
             onClick={deleteSocial}
