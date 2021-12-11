@@ -69,7 +69,7 @@ export default function PostPage(props) {
   return (
     <>
       <NavBarCards />
-      <ReactNotification />
+      <ReactNotification zIndex="9999" />
       <Container
         minWidth="100vw"
         backgroundImage={`${'/back.jpg'}`}
@@ -109,6 +109,7 @@ export default function PostPage(props) {
               position="relative"
             >
               <ThemeOne
+                uid={data.uid}
                 avatar={data.avatar}
                 nameUser={data.name}
                 surname={data.surname}

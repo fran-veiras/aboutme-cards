@@ -21,7 +21,7 @@ export const NavBarCards = () => {
 
   return (
     <Flex
-      zIndex="9999"
+      zIndex="2"
       position="absolute"
       w="full"
       height="80px"
@@ -49,6 +49,7 @@ export const NavBarCards = () => {
           >
             ABOUTME APP
           </Heading>
+
           <Box
             onClick={handleHome}
             cursor="pointer"

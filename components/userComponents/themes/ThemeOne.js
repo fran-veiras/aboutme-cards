@@ -1,20 +1,13 @@
+import { CheckIcon, CopyIcon } from '@chakra-ui/icons';
 import { Image } from '@chakra-ui/image';
 import { Box, Flex, Grid, Heading, Text } from '@chakra-ui/layout';
-import React from 'react';
-import CafecitoIcon from '../../../public/icons/cafecito';
-import FacebookIcon from '../../../public/icons/facebook';
-import GitHubIconCard from '../../../public/icons/github';
-import InstagramIcon from '../../../public/icons/instagram';
-import LinedinIcon from '../../../public/icons/linkedin';
-import PatreonIcon from '../../../public/icons/patreon';
-import TwitchIcon from '../../../public/icons/Twitch';
-import TwitterIcon from '../../../public/icons/twitter';
-import WebSiteIcon from '../../../public/icons/website';
-import WhatsAppIcon from '../../../public/icons/whatsApp';
-import YoutubeIcon from '../../../public/icons/youtube';
+import React, { useRef } from 'react';
 import { ExperienceComp } from './experience';
 import { LanguagesComp } from './languages';
 import { SocialIconsComp } from './social';
+import ReactNotification from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css';
+import { store } from 'react-notifications-component';
 
 export const ThemeOne = ({
   avatar,
@@ -27,12 +20,47 @@ export const ThemeOne = ({
   socialData,
   secondaryColor,
   color,
+  uid,
 }) => {
   const social =
     socialData !== undefined && socialData !== null && socialData[0];
 
+  function CopiedSucces() {
+    store.addNotification({
+      title: 'Hora de compartir tu card ',
+      message: 'El link del sitio se copio correctamente',
+      type: 'success',
+      container: 'top-right',
+      insert: 'top',
+      animationIn: ['animate__animated', 'animate__fadeIn'],
+      animationOut: ['animate__animated', 'animate__fadeOut'],
+      dismiss: {
+        duration: 5000,
+        onScreen: true,
+      },
+    });
+  }
+
+  const copyToClipboard = () => {
+    const el = document.createElement('input');
+    el.value = window.location.href;
+    document.body.appendChild(el);
+    el.select();
+    document.execCommand('copy');
+    document.body.removeChild(el) & CopiedSucces();
+  };
+
   return (
-    <Box display="flex" gridGap={3} width="full">
+    <Box position="relative" display="flex" gridGap={3} width="full">
+      <CopyIcon
+        onClick={copyToClipboard}
+        width="22px"
+        height="22px"
+        cursor="pointer"
+        position="absolute"
+        top="10"
+        right="10"
+      />
       <Flex flexDir="column" width="full">
         <Flex
           p={10}
