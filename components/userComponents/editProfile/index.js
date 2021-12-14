@@ -71,7 +71,7 @@ export const EditProfile = ({ setEditCard, editCard, data, userId }) => {
       social,
       about,
       color
-    ) && changeSelect() & location.reload();
+    ) && changeSelect();
   };
 
   return (
