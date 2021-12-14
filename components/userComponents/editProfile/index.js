@@ -1,7 +1,7 @@
 /* eslint-disable react/no-children-prop */
 import { Image } from '@chakra-ui/image';
 import { Box, Flex, Heading, Text } from '@chakra-ui/layout';
-import { Input, SelectField } from '@chakra-ui/react';
+import { Input, SelectField, Spinner } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { InputGroup, InputLeftAddon } from '@chakra-ui/input';
 import { Textarea } from '@chakra-ui/textarea';
@@ -80,8 +80,10 @@ export const EditProfile = ({
     ).then(changeSelectFunc);
   };
 
+  const [spinner, setSpinner] = useState(false);
+
   const changeSelectFunc = () => {
-    reloadData();
+    reloadData() & setSpinner(true);
   };
 
   return (
@@ -193,9 +195,12 @@ export const EditProfile = ({
           justifyContent="center"
           alignItems="center"
         >
-          <Text onClick={sendData} color="#000" variant="paragraph">
-            Confirmar
-          </Text>
+          {spinner === false && (
+            <Text onClick={sendData} color="#000" variant="paragraph">
+              Confirmar
+            </Text>
+          )}
+          {spinner === true && <Spinner />}
         </Box>
       </Flex>
     </Flex>
