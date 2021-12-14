@@ -12,13 +12,7 @@ import { ExperienceComponent } from './experience';
 import { SocialMediaComp } from './social';
 import { SelectColorComp } from './selectColor';
 
-export const EditProfile = ({
-  setEditCard,
-  editCard,
-  data,
-  userId,
-  NotificationAdvice,
-}) => {
+export const EditProfile = ({ setEditCard, editCard, data, userId }) => {
   const changeSelect = () => {
     editCard === false && setEditCard(!false);
     editCard === true && setEditCard(!true);
@@ -77,7 +71,7 @@ export const EditProfile = ({
       social,
       about,
       color
-    ) && NotificationAdvice() & changeSelect() & location.reload();
+    ) && changeSelect() & location.reload();
   };
 
   return (

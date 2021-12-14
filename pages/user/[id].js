@@ -23,11 +23,9 @@ export default function PostPage(props) {
 
   useEffect(() => {
     setData(props);
-    user !== undefined &&
-      user !== null &&
-      user.uid === data.uid &&
-      UpdateSite();
   }, []);
+
+  user !== undefined && user !== null && user.uid === data.uid && UpdateSite();
 
   useEffect(() => {
     setData(props);
@@ -52,23 +50,6 @@ export default function PostPage(props) {
         <Spinner />
       </>
     );
-
-  function NotificationAdvice() {
-    store.addNotification({
-      title: 'Los datos se actualizaron correctamente',
-      message:
-        'La próxima vez que se actualice el sitio, se visualizaran los cambios',
-      type: 'success',
-      container: 'top-right',
-      insert: 'top',
-      animationIn: ['animate__animated', 'animate__fadeIn'],
-      animationOut: ['animate__animated', 'animate__fadeOut'],
-      dismiss: {
-        duration: 4000,
-        onScreen: false,
-      },
-    });
-  }
 
   function UpdateSite() {
     store.addNotification({
@@ -187,7 +168,6 @@ export default function PostPage(props) {
               editCard={editCard}
               setEditCard={setEditCard}
               userId={user.uid}
-              NotificationAdvice={NotificationAdvice}
             />
           )}
       </Container>
