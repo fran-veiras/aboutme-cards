@@ -30,7 +30,7 @@ export default function PostPage(props) {
       user !== null &&
       user.uid === data.uid &&
       UpdateSite();
-  }, [data]);
+  }, [user]);
 
   useEffect(() => {
     setData(props);

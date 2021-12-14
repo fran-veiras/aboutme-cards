@@ -177,7 +177,7 @@ export const EditProfile = ({ setEditCard, editCard, data, userId }) => {
           height="50px"
           bottom="-50"
           right="0"
-          zIndex="9998"
+          zIndex="99"
           cursor="pointer"
           display="flex"
           justifyContent="center"
