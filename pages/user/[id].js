@@ -25,7 +25,12 @@ export default function PostPage(props) {
     setData(props);
   }, []);
 
-  user !== undefined && user !== null && user.uid === data.uid && UpdateSite();
+  useEffect(() => {
+    user !== undefined &&
+      user !== null &&
+      user.uid === data.uid &&
+      UpdateSite();
+  }, [data]);
 
   useEffect(() => {
     setData(props);
