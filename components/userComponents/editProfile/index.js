@@ -194,9 +194,10 @@ export const EditProfile = ({
           display="flex"
           justifyContent="center"
           alignItems="center"
+          onClick={sendData}
         >
           {spinner === false && (
-            <Text onClick={sendData} color="#000" variant="paragraph">
+            <Text color="#000" variant="paragraph">
               Confirmar
             </Text>
           )}
