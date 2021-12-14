@@ -36,6 +36,10 @@ export default function PostPage(props) {
     setData(props);
   }, [props]);
 
+  function reloadData() {
+    location.reload();
+  }
+
   // working now
   // working now
   // working now
@@ -175,6 +179,7 @@ export default function PostPage(props) {
               editCard={editCard}
               setEditCard={setEditCard}
               userId={user.uid}
+              reloadData={reloadData}
             />
           )}
       </Container>

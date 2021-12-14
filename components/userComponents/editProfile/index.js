@@ -12,7 +12,13 @@ import { ExperienceComponent } from './experience';
 import { SocialMediaComp } from './social';
 import { SelectColorComp } from './selectColor';
 
-export const EditProfile = ({ setEditCard, editCard, data, userId }) => {
+export const EditProfile = ({
+  setEditCard,
+  editCard,
+  data,
+  userId,
+  reloadData,
+}) => {
   const changeSelect = () => {
     editCard === false && setEditCard(!false);
     editCard === true && setEditCard(!true);
@@ -60,7 +66,7 @@ export const EditProfile = ({ setEditCard, editCard, data, userId }) => {
     setAbout(e.target.value);
   };
 
-  const sendData = () => {
+  const sendData = async () => {
     editar(
       userId,
       surname,
@@ -71,7 +77,11 @@ export const EditProfile = ({ setEditCard, editCard, data, userId }) => {
       social,
       about,
       color
-    ) && changeSelect();
+    ).then(changeSelectFunc);
+  };
+
+  const changeSelectFunc = () => {
+    reloadData();
   };
 
   return (
