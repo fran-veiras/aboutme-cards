@@ -23,6 +23,10 @@ export default function PostPage(props) {
 
   useEffect(() => {
     setData(props);
+    user !== undefined &&
+      user !== null &&
+      user.uid === data.uid &&
+      UpdateSite();
   }, []);
 
   useEffect(() => {
@@ -61,6 +65,23 @@ export default function PostPage(props) {
       animationOut: ['animate__animated', 'animate__fadeOut'],
       dismiss: {
         duration: 4000,
+        onScreen: false,
+      },
+    });
+  }
+
+  function UpdateSite() {
+    store.addNotification({
+      title: 'Importante',
+      message:
+        'Tenga en cuenta que una vez guarde los cambios es necesario actualizar la página para verlos en pantalla',
+      type: 'warning',
+      container: 'bottom-right',
+      insert: 'top',
+      animationIn: ['animate__animated', 'animate__fadeIn'],
+      animationOut: ['animate__animated', 'animate__fadeOut'],
+      dismiss: {
+        duration: 6000,
         onScreen: true,
       },
     });
@@ -124,11 +145,11 @@ export default function PostPage(props) {
               {/* <Button onClick={onChange}>change</Button> */}
               {user !== undefined && user !== null && user.uid === data.uid && (
                 <Box
-                  visibility={{
-                    base: 'hidden',
-                    md: 'visible', // 48em-80em,
-                    xl: 'visible', // 80em+
-                    '2xl': 'visible',
+                  display={{
+                    base: 'none',
+                    md: 'flex', // 48em-80em,
+                    xl: 'flex', // 80em+
+                    '2xl': 'flex',
                   }}
                   borderRadius="0px 0px 10px 10px"
                   position="absolute"
@@ -140,7 +161,6 @@ export default function PostPage(props) {
                   right="0"
                   zIndex="9998"
                   cursor="pointer"
-                  display="flex"
                   justifyContent="center"
                   alignItems="center"
                   onClick={changeSelect}

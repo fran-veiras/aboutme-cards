@@ -21,11 +21,11 @@ export const NavBarCards = () => {
 
   return (
     <Flex
-      visibility={{
-        base: 'hidden',
-        md: 'visible', // 48em-80em,
-        xl: 'visible', // 80em+
-        '2xl': 'visible',
+      display={{
+        base: 'none',
+        md: 'flex', // 48em-80em,
+        xl: 'flex', // 80em+
+        '2xl': 'flex',
       }}
       zIndex="2"
       position={{

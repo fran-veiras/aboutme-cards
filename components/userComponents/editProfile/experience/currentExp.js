@@ -24,7 +24,7 @@ export const CurrentExp = ({ value, setExperience }) => {
       <Flex alignItems="center" gridGap={3} justifyContent="space-between">
         <Text color="#000" variant="paragraph">
           {value.position.length > 15 && value.position.substr(0, 10)}
-          {value.position.length < 15 && value.position}
+          {value.position.length <= 15 && value.position}
         </Text>
         <Text color="#000" variant="paragraph">
           {value.years}

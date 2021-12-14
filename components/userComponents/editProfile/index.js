@@ -77,7 +77,7 @@ export const EditProfile = ({
       social,
       about,
       color
-    ) && NotificationAdvice() & changeSelect();
+    ) && NotificationAdvice() & changeSelect() & location.reload();
   };
 
   return (
