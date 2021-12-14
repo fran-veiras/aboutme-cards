@@ -21,6 +21,7 @@ export const ThemeOne = ({
   secondaryColor,
   color,
   uid,
+  email,
 }) => {
   const social =
     socialData !== undefined && socialData !== null && socialData[0];
@@ -187,9 +188,11 @@ export const ThemeOne = ({
             background="#fff"
             borderRadius="7px"
           >
-            <Text color="#000" variant="paragraph">
-              Contactame por mail!
-            </Text>
+            <a href={`mailto:${email}`}>
+              <Text color="#000" variant="paragraph">
+                Contactame por mail!
+              </Text>
+            </a>
           </Box>
           {social !== undefined && social !== null && (
             <SocialIconsComp social={social} />

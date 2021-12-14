@@ -86,6 +86,7 @@ export default function PostPage(props) {
           xl: '100vh', // 80em+
           '2xl': '100vh',
         }}
+        overflowX="hidden"
       >
         <Head>
           <title>AboutMe | {data.name + ' ' + data.surname}</title>
@@ -132,6 +133,7 @@ export default function PostPage(props) {
                 socialData={data.social}
                 color={data.color}
                 secondaryColor={data.color + '99'}
+                email={data.email}
               />
               {/* <Button onClick={onChange}>change</Button> */}
               {user !== undefined && user !== null && user.uid === data.uid && (
@@ -150,7 +152,7 @@ export default function PostPage(props) {
                   height="50px"
                   bottom="-50"
                   right="0"
-                  zIndex="9998"
+                  zIndex="99"
                   cursor="pointer"
                   justifyContent="center"
                   alignItems="center"
