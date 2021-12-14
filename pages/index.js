@@ -31,7 +31,7 @@ export default function Home() {
       </Head>
       <NavBar />
       <Container
-        minWidth={{
+        maxWidth={{
           base: '95vw', // 0-48em
           md: '95vw', // 48em-80em,
           xl: '95vw', // 80em+
@@ -40,8 +40,8 @@ export default function Home() {
         padding="0px"
       >
         <MainContentPort />
-        <CreateAccount />
         <TemasEditables />
+        <CreateAccount />
         <AboutAppComponent />
       </Container>
     </Container>

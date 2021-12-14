@@ -21,8 +21,19 @@ export const NavBarCards = () => {
 
   return (
     <Flex
+      visibility={{
+        base: 'hidden',
+        md: 'visible', // 48em-80em,
+        xl: 'visible', // 80em+
+        '2xl': 'visible',
+      }}
       zIndex="2"
-      position="absolute"
+      position={{
+        base: 'none',
+        md: 'absolute', // 48em-80em,
+        xl: 'absolute', // 80em+
+        '2xl': 'absolute',
+      }}
       w="full"
       height="80px"
       justifyContent="center"
@@ -58,9 +69,9 @@ export const NavBarCards = () => {
             height="40px"
             p={2}
             borderRadius="9999px"
-            display="flex"
             alignItems="center"
             justifyContent="center"
+            display="flex"
           >
             <Image width="full" src={'/logo.png'} />
           </Box>
@@ -72,7 +83,16 @@ export const NavBarCards = () => {
           </Button>
         )}
         {user !== USER_STATES.NOT_LOGED && user !== USER_STATES.NOT_KNOWN && (
-          <ProfileAcordion avatar={user.avatar} userId={user.uid} />
+          <Box
+            display={{
+              base: 'none', // 0-48em
+              md: 'flex', // 48em-80em,
+              xl: 'flex', // 80em+
+              '2xl': 'flex',
+            }}
+          >
+            <ProfileAcordion avatar={user.avatar} userId={user.uid} />
+          </Box>
         )}
       </Box>
     </Flex>

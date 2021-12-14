@@ -20,6 +20,13 @@ export const SocialIconsComp = ({ social }) => {
       height="full"
       gridGap={5}
       alignItems="center"
+      overflowX="scroll"
+      py={2}
+      css={{
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
+      }}
     >
       {social.Instagram !== undefined && social.Instagram.length !== 0 && (
         <a href={social.Instagram}>

@@ -6,6 +6,12 @@ import PortadaImage from '../../../public/portada';
 export const MainContentPort = () => {
   return (
     <Flex
+      flexDir={{
+        base: 'column', // 0-48em
+        md: 'column', // 48em-80em,
+        xl: 'row', // 80em+
+        '2xl': 'row',
+      }}
       mt={20}
       gridGap={5}
       position="relative"
@@ -52,8 +58,8 @@ export const MainContentPort = () => {
           </Box>
         </Flex>
       </Box>
-      <Box zIndex="19">
-        <PortadaImage />
+      <Box width="full" zIndex="19">
+        <PortadaImage width="full" />
       </Box>
     </Flex>
   );

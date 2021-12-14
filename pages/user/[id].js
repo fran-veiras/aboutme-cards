@@ -98,7 +98,7 @@ export default function PostPage(props) {
             <Flex
               wordBreak="break-word"
               width={{
-                base: '95vw', // 0-48em
+                base: '100vw', // 0-48em
                 md: '95vw', // 48em-80em,
                 xl: '60vw', // 80em+
                 '2xl': '40vw',
@@ -124,6 +124,12 @@ export default function PostPage(props) {
               {/* <Button onClick={onChange}>change</Button> */}
               {user !== undefined && user !== null && user.uid === data.uid && (
                 <Box
+                  visibility={{
+                    base: 'hidden',
+                    md: 'visible', // 48em-80em,
+                    xl: 'visible', // 80em+
+                    '2xl': 'visible',
+                  }}
                   borderRadius="0px 0px 10px 10px"
                   position="absolute"
                   background={data.color + '99'}

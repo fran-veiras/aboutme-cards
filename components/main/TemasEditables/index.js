@@ -4,9 +4,17 @@ import ThemesMain from '../../../public/themes';
 
 export const TemasEditables = () => {
   return (
-    <Flex py={20}>
-      <Box>
-        <ThemesMain />
+    <Flex
+      flexDir={{
+        base: 'column', // 0-48em
+        md: 'column', // 48em-80em,
+        xl: 'row', // 80em+
+        '2xl': 'row',
+      }}
+      py={20}
+    >
+      <Box width="full">
+        <ThemesMain width="full" />
       </Box>
       <Box>
         <Heading variant="secondary" my={4}>

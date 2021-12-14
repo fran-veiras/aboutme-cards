@@ -58,14 +58,19 @@ export const ThemeOne = ({
         height="22px"
         cursor="pointer"
         position="absolute"
-        top="10"
-        right="10"
+        top="5"
+        right="5"
       />
       <Flex flexDir="column" width="full">
         <Flex
           p={10}
           gridGap={6}
-          flexDir="row"
+          flexDir={{
+            base: 'column', // 0-48em
+            md: 'row', // 48em-80em,
+            xl: 'row', // 80em+
+            '2xl': 'row',
+          }}
           borderRadius="7px 7px 0px 0px"
           background="#fff"
           alignItems="center"
