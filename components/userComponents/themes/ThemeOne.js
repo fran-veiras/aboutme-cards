@@ -51,7 +51,23 @@ export const ThemeOne = ({
   };
 
   return (
-    <Box position="relative" display="flex" gridGap={3} width="full">
+    <Box
+      position="relative"
+      display="flex"
+      gridGap={3}
+      height={{
+        base: '100%', // 0-48em
+        md: 'full', // 48em-80em,
+        xl: 'full', // 80em+
+        '2xl': 'full',
+      }}
+      minWidth={{
+        base: '100vw', // 0-48em
+        md: 'full', // 48em-80em,
+        xl: 'full', // 80em+
+        '2xl': 'full',
+      }}
+    >
       <CopyIcon
         onClick={copyToClipboard}
         width="22px"
@@ -81,6 +97,7 @@ export const ThemeOne = ({
             height="150px"
             borderRadius="9999px"
           />
+
           <Flex flexDir="column" width="full">
             <Heading color="#000" variant="secondary">
               {nameUser} {surname}

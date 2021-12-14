@@ -94,7 +94,12 @@ export default function PostPage(props) {
       <Container
         minWidth="100vw"
         backgroundImage={`${'/back.jpg'}`}
-        height="100vh"
+        height={{
+          base: '100%', // 0-48em
+          md: '100vh', // 48em-80em,
+          xl: '100vh', // 80em+
+          '2xl': '100vh',
+        }}
       >
         <Head>
           <title>AboutMe | {data.name + ' ' + data.surname}</title>

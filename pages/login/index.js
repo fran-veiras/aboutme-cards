@@ -5,6 +5,9 @@ import { useRouter } from 'next/dist/client/router';
 import { useState } from 'react';
 import { NavBar } from '../../components/NavBar';
 import { NavBarCopy2 } from '../../components/NavBar/index copy 2';
+import 'react-notifications-component/dist/theme.css';
+import { store } from 'react-notifications-component';
+import ReactNotification from 'react-notifications-component';
 import {
   addInfo,
   loginWithGitHub,
@@ -42,13 +45,25 @@ export default function Login() {
       setLoading(!false) & router.replace(`/user/${user.uid}`);
   };
 
+  function AdviceNotification() {
+    store.addNotification({
+      title: 'Este correo ya se encuentra registrado',
+      message: 'Por favor inicie sesión desde el login con Google',
+      type: 'warning',
+      container: 'top-right',
+      insert: 'top',
+      animationIn: ['animate__animated', 'animate__fadeIn'],
+      animationOut: ['animate__animated', 'animate__fadeOut'],
+      dismiss: {
+        duration: 6000,
+        onScreen: true,
+      },
+    });
+  }
+
   const handleGitHubLogin = () => {
     loginWithGitHub().catch((err) => {
-      console.log(
-        alert(
-          'este email ya se encuentra registrado con google, por favor inicia con google'
-        )
-      );
+      AdviceNotification();
     });
   };
 
@@ -79,6 +94,7 @@ export default function Login() {
   return (
     <>
       <NavBarCopy2 />
+      <ReactNotification zIndex="9999" />
       <Container
         minWidth={{
           base: '95vw', // 0-48em
